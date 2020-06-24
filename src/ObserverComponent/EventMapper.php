@@ -11,7 +11,7 @@ final class EventMapper
     private \Nette\Application\Application $application;
     private \Nette\Caching\IStorage $storage;
     private ?\Nette\Caching\Cache $eventMap = null;
-    private bool $debugMode;
+    private bool $debugMode = true;
 
     public function __construct(
         \Nette\Application\Application $application,
