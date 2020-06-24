@@ -1,0 +1,23 @@
+{
+  "name": "infinityloop-dev/observer-component",
+  "description": "Event system for Nette framework's component model.",
+  "homepage": "https://www.infinityloop.dev/",
+  "type": "library",
+  "license": ["MIT"],
+  "authors": [
+    {
+      "name": "Václav Pelíšek",
+      "homepage": "https://www.peldax.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "nette/application": "^3.0",
+    "nette/caching": "^3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Infinityloop\\": "src/"
+    }
+  }
+}
