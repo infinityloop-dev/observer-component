@@ -4,8 +4,10 @@ declare(strict_types = 1);
 
 namespace Infinityloop\ObserverComponent;
 
-class EventMapper
+final class EventMapper
 {
+    use Nette\SmartObject;
+
     private \Nette\Application\Application $application;
     private \Nette\Caching\IStorage $storage;
     private ?\Nette\Caching\Cache $eventMap = null;
@@ -13,12 +15,13 @@ class EventMapper
 
     public function __construct(
         \Nette\Application\Application $application,
-        \Nette\Caching\IStorage $storage
+        \Nette\Caching\IStorage $storage,
+        bool $debugMode
     )
     {
         $this->application = $application;
         $this->storage = $storage;
-        $this->debugMode = \App\Bootstrap::isDebugMode();
+        $this->debugMode = $debugMode;
     }
 
     public function registerObserver(IObserverComponent $component) : void
@@ -65,7 +68,8 @@ class EventMapper
 
     private function getObserverList(string $eventName) : array
     {
-        return $this->getEventMap()->load($eventName) ?? [];
+        return $this->getEventMap()->load($eventName)
+            ?? [];
     }
 
     private function isComponentRegistered(string $componentPath) : bool
