@@ -13,7 +13,7 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
         $httpResponse2 = \Mockery::mock(\Nette\Application\IResponse::class);
         $httpResponse2->expects('send');
 
-        $request = new \Nette\Application\Request('BlaPresenter:edit');
+        $request = new \Nette\Application\Request('TestPresenter:edit');
 
         $presenter = \Mockery::mock(\Nette\Application\IPresenter::class);
         $presenter->expects('getAction')
@@ -25,7 +25,7 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 
         $presenterFactory = \Mockery::mock(\Nette\Application\IPresenterFactory::class);
         $presenterFactory->expects('createPresenter')
-            ->with('BlaPresenter:edit')
+            ->with('TestPresenter:edit')
             ->andReturn($presenter);
 
         $router = \Mockery::mock(\Nette\Routing\Router::class);
@@ -40,13 +40,13 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
         $storage->expects('read')
             ->once()
             ->withAnyArgs()
-            ->andReturn([0 => BlaPresenter::class]);
+            ->andReturn([0 => TestPresenter::class]);
 
-        $component = \Mockery::mock(Bla::class);
+        $component = \Mockery::mock(TestComponent::class);
         $component->expects('lookupPath')
             ->once()
             ->with(\Nette\Application\IPresenter::class)
-            ->andReturn(BlaPresenter::class);
+            ->andReturn(TestPresenter::class);
 
         $instance = new \Infinityloop\ObserverComponent\EventMapper($application, $storage, false);
         $instance->registerObserver($component);
@@ -57,7 +57,7 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
         $httpResponse2 = \Mockery::mock(\Nette\Application\IResponse::class);
         $httpResponse2->expects('send');
 
-        $request = new \Nette\Application\Request('BlaPresenter:edit');
+        $request = new \Nette\Application\Request('TestPresenter:edit');
 
         $presenter = \Mockery::mock(\Nette\Application\IPresenter::class);
         $presenter->expects('getAction')
@@ -68,7 +68,7 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 
         $presenterFactory = \Mockery::mock(\Nette\Application\IPresenterFactory::class);
         $presenterFactory->expects('createPresenter')
-            ->with('BlaPresenter:edit')
+            ->with('TestPresenter:edit')
             ->andReturn($presenter);
 
         $router = \Mockery::mock(\Nette\Routing\Router::class);
@@ -83,16 +83,16 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
         $storage->expects('read')
             ->twice()
             ->withAnyArgs()
-            ->andReturn([0 => BlaPresenter::class, 1 => 'test']);
+            ->andReturn([0 => TestPresenter::class, 1 => 'test']);
 
-        $component = \Mockery::mock(Bla::class);
+        $component = \Mockery::mock(TestComponent::class);
         $component->expects('lookupPath')
             ->with(\Nette\Application\IPresenter::class)
-            ->andReturn(BlaPresenter::class);
+            ->andReturn(TestPresenter::class);
         $component->expects('getObservedEvents')
             ->once()
             ->withNoArgs()
-            ->andReturn([BlaEventEdit::class, 'shrek']);
+            ->andReturn([TestEventEdit::class, 'shrek']);
 
         $instance = new \Infinityloop\ObserverComponent\EventMapper($application, $storage);
         $instance->registerObserver($component);
@@ -103,7 +103,7 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
         $httpResponse2 = \Mockery::mock(\Nette\Application\IResponse::class);
         $httpResponse2->expects('send');
 
-        $request = new \Nette\Application\Request('BlaPresenter:edit');
+        $request = new \Nette\Application\Request('TestPresenter:edit');
 
         $presenter = \Mockery::mock(\Nette\Application\IPresenter::class);
         $presenter->expects('getAction')
@@ -114,7 +114,7 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 
         $presenterFactory = \Mockery::mock(\Nette\Application\IPresenterFactory::class);
         $presenterFactory->expects('createPresenter')
-            ->with('BlaPresenter:edit')
+            ->with('TestPresenter:edit')
             ->andReturn($presenter);
 
         $router = \Mockery::mock(\Nette\Routing\Router::class);
@@ -134,13 +134,13 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
             ->twice()
             ->withAnyArgs();
 
-        $component = \Mockery::mock(Bla::class);
+        $component = \Mockery::mock(TestComponent::class);
         $component->expects('lookupPath')
             ->with(\Nette\Application\IPresenter::class)
-            ->andReturn(Bla::class);
+            ->andReturn(TestComponent::class);
         $component->expects('getObservedEvents')
             ->withNoArgs()
-            ->andReturn([BlaEventEdit::class]);
+            ->andReturn([TestEventEdit::class]);
 
         $instance = new \Infinityloop\ObserverComponent\EventMapper($application, $storage);
         $instance->registerObserver($component);
@@ -153,9 +153,9 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
         $httpResponse2 = \Mockery::mock(\Nette\Application\IResponse::class);
         $httpResponse2->expects('send');
 
-        $request = new \Nette\Application\Request('BlaPresenter:edit');
+        $request = new \Nette\Application\Request('TestPresenter:edit');
 
-        $component = new Bla();
+        $component = new TestComponent();
 
         $presenter = \Mockery::mock(\Nette\Application\IPresenter::class);
         $presenter->expects('getAction')
@@ -166,12 +166,12 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
             ->andReturn($httpResponse2);
         $presenter->expects('getComponent')
             ->once()
-            ->with(Bla::class)
+            ->with(TestComponent::class)
             ->andReturn($component);
 
         $presenterFactory = \Mockery::mock(\Nette\Application\IPresenterFactory::class);
         $presenterFactory->expects('createPresenter')
-            ->with('BlaPresenter:edit')
+            ->with('TestPresenter:edit')
             ->andReturn($presenter);
 
         $router = \Mockery::mock(\Nette\Routing\Router::class);
@@ -186,9 +186,9 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
         $storage->expects('read')
             ->once()
             ->withAnyArgs()
-            ->andReturn([0 => Bla::class]);
+            ->andReturn([0 => TestComponent::class]);
 
-        $event = new BlaEventEdit();
+        $event = new TestEventEdit();
 
         $instance = new \Infinityloop\ObserverComponent\EventMapper($application, $storage);
         $instance->dispatchEvent($event);
@@ -199,7 +199,7 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
         $httpResponse2 = \Mockery::mock(\Nette\Application\IResponse::class);
         $httpResponse2->expects('send');
 
-        $request = new \Nette\Application\Request('BlaPresenter:edit');
+        $request = new \Nette\Application\Request('TestPresenter:edit');
 
         $presenter = \Mockery::mock(\Nette\Application\IPresenter::class);
         $presenter->expects('getAction')
@@ -211,7 +211,7 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 
         $presenterFactory = \Mockery::mock(\Nette\Application\IPresenterFactory::class);
         $presenterFactory->expects('createPresenter')
-            ->with('BlaPresenter:edit')
+            ->with('TestPresenter:edit')
             ->andReturn($presenter);
 
         $router = \Mockery::mock(\Nette\Routing\Router::class);
@@ -230,13 +230,13 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
             ->twice()
             ->withAnyArgs();
 
-        $component = \Mockery::mock(Bla::class);
+        $component = \Mockery::mock(TestComponent::class);
         $component->expects('lookupPath')
             ->with(\Nette\Application\IPresenter::class)
-            ->andReturn(BlaPresenter::class);
+            ->andReturn(TestPresenter::class);
         $component->expects('getObservedEvents')
             ->withNoArgs()
-            ->andReturn([Bla::class]);
+            ->andReturn([TestComponent::class]);
 
         $instance = new \Infinityloop\ObserverComponent\EventMapper($application, $storage, false);
         $instance->registerObserver($component);

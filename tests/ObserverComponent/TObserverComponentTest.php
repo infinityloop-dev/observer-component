@@ -11,7 +11,7 @@ final class TObserverComponentTest extends \Mockery\Adapter\Phpunit\MockeryTestC
         $httpResponse2 = \Mockery::mock(\Nette\Application\IResponse::class);
         $httpResponse2->expects('send');
 
-        $request = new \Nette\Application\Request('BlaPresenter:edit');
+        $request = new \Nette\Application\Request('TestPresenter:edit');
 
         $presenter = \Mockery::mock(\Nette\Application\IPresenter::class);
         $presenter->expects('run')
@@ -19,7 +19,7 @@ final class TObserverComponentTest extends \Mockery\Adapter\Phpunit\MockeryTestC
 
         $presenterFactory = \Mockery::mock(\Nette\Application\IPresenterFactory::class);
         $presenterFactory->expects('createPresenter')
-            ->with('BlaPresenter:edit')
+            ->with('TestPresenter:edit')
             ->andReturn($presenter);
 
         $router = \Mockery::mock(\Nette\Routing\Router::class);

@@ -11,7 +11,7 @@ final class TObservableTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
         $httpResponse2 = \Mockery::mock(\Nette\Application\IResponse::class);
         $httpResponse2->expects('send');
 
-        $request = new \Nette\Application\Request('BlaPresenter:edit');
+        $request = new \Nette\Application\Request('TestPresenter:edit');
 
         $presenter = \Mockery::mock(\Nette\Application\IPresenter::class);
         $presenter->expects('run')
@@ -19,7 +19,7 @@ final class TObservableTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 
         $presenterFactory = \Mockery::mock(\Nette\Application\IPresenterFactory::class);
         $presenterFactory->expects('createPresenter')
-            ->with('BlaPresenter:edit')
+            ->with('TestPresenter:edit')
             ->andReturn($presenter);
 
         $router = \Mockery::mock(\Nette\Routing\Router::class);
@@ -46,7 +46,7 @@ final class TObservableTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
         $httpResponse2 = \Mockery::mock(\Nette\Application\IResponse::class);
         $httpResponse2->expects('send');
 
-        $request = new \Nette\Application\Request('BlaPresenter:edit');
+        $request = new \Nette\Application\Request('TestPresenter:edit');
 
         $presenter = \Mockery::mock(\Nette\Application\IPresenter::class);
         $presenter->expects('getAction')
@@ -58,7 +58,7 @@ final class TObservableTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 
         $presenterFactory = \Mockery::mock(\Nette\Application\IPresenterFactory::class);
         $presenterFactory->expects('createPresenter')
-            ->with('BlaPresenter:edit')
+            ->with('TestPresenter:edit')
             ->andReturn($presenter);
 
         $router = \Mockery::mock(\Nette\Routing\Router::class);
@@ -76,7 +76,7 @@ final class TObservableTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 
         $instance = new \Infinityloop\ObserverComponent\EventMapper($application, $storage);
 
-        $event = new BlaEventEdit();
+        $event = new TestEventEdit();
 
         $decoratorInstance = new class()
         {
