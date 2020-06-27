@@ -8,13 +8,11 @@
     "logs": {
         "text": "build/infection.log",
         "summary": "build/summary.log",
-        "perMutator": "build/per-mutator.md",
-        "badge": {
-            "branch": "master"
-        }
+        "perMutator": "build/per-mutator.md"
     },
     "tmpDir": "/tmp/infection",
-    "minMsi": 80,
+    "minMsi": 90,
+    "minCoveredMsi": 95,
     "mutators": {
         "@default": true
     },
