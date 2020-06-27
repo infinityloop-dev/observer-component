@@ -34,7 +34,7 @@ final class TObservableTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 
         $instance = new \Infinityloop\ObserverComponent\EventMapper($application, $storage);
 
-        $decoratorInstance = new class()
+        $decoratorInstance = new class ()
         {
             use \Infinityloop\ObserverComponent\TObservable;
         };
@@ -76,9 +76,9 @@ final class TObservableTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 
         $instance = new \Infinityloop\ObserverComponent\EventMapper($application, $storage);
 
-        $event = new TestEventEdit();
+        $event = new \Infinityloop\Tests\ObserverComponent\TestEventEdit();
 
-        $decoratorInstance = new class()
+        $decoratorInstance = new class ()
         {
             use \Infinityloop\ObserverComponent\TObservable;
         };

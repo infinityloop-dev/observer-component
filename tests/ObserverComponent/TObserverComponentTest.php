@@ -34,7 +34,7 @@ final class TObserverComponentTest extends \Mockery\Adapter\Phpunit\MockeryTestC
 
         $instance = new \Infinityloop\ObserverComponent\EventMapper($application, $storage);
 
-        $decoratorInstance = new class()
+        $decoratorInstance = new class ()
         {
             use \Infinityloop\ObserverComponent\TObserverComponent;
 

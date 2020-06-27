@@ -10,9 +10,7 @@ class TestComponent implements \Infinityloop\ObserverComponent\IObserverComponen
 
     public static function getObservedEvents() : array
     {
-        return [
-            \Infinityloop\Tests\ObserverComponent\TestEventEdit::class
-        ];
+        return [\Infinityloop\Tests\ObserverComponent\TestEventEdit::class];
     }
 
     public function observableUpdated(\Infinityloop\ObserverComponent\IEvent $event) : void

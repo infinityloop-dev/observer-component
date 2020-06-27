@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 namespace Infinityloop\Tests\ObserverComponent;
 
-use Infinityloop\ObserverComponent\EventMapper;
-
 final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 {
     public function testComponentRegisteredReturn() : void
@@ -155,7 +153,7 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 
         $request = new \Nette\Application\Request('TestPresenter:edit');
 
-        $component = new TestComponent();
+        $component = new \Infinityloop\Tests\ObserverComponent\TestComponent();
 
         $presenter = \Mockery::mock(\Nette\Application\IPresenter::class);
         $presenter->expects('getAction')
@@ -188,7 +186,7 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
             ->withAnyArgs()
             ->andReturn([0 => TestComponent::class]);
 
-        $event = new TestEventEdit();
+        $event = new \Infinityloop\Tests\ObserverComponent\TestEventEdit();
 
         $instance = new \Infinityloop\ObserverComponent\EventMapper($application, $storage);
         $instance->dispatchEvent($event);

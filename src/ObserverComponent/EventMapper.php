@@ -45,7 +45,8 @@ final class EventMapper
             $observerList[] = $componentPath;
             $this->getEventMap()->save($eventName, $observerList);
 
-            $registeredComponents = $this->getEventMap()->load('components') ?? [];
+            $registeredComponents = $this->getEventMap()->load('components')
+                ?? [];
             $registeredComponents[] = $componentPath;
             $this->getEventMap()->save('components', $registeredComponents);
         }
@@ -55,6 +56,7 @@ final class EventMapper
     {
         $presenter = $this->application->getPresenter();
         \assert($presenter instanceof \Nette\Application\UI\Control);
+
         foreach ($this->getObserverList(\get_class($event)) as $observerPath) {
             \assert(\is_string($observerPath));
 
@@ -73,7 +75,8 @@ final class EventMapper
 
     private function isComponentRegistered(string $componentPath) : bool
     {
-        $registeredComponents = $this->getEventMap()->load('components') ?? [];
+        $registeredComponents = $this->getEventMap()->load('components')
+            ?? [];
 
         return \in_array($componentPath, $registeredComponents, true);
     }
