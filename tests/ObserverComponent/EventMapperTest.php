@@ -242,21 +242,21 @@ final class EventMapperTest extends \Mockery\Adapter\Phpunit\MockeryTestCase
 
     public function testGetObserverListVisibility() : void
     {
-        $reflection = new \ReflectionClass(EventMapper::class);
+        $reflection = new \ReflectionClass(\Infinityloop\ObserverComponent\EventMapper::class);
 
         self::assertTrue($reflection->getMethod('getObserverList')->isPrivate());
     }
 
     public function testIsComponentRegisteredVisibility() : void
     {
-        $reflection = new \ReflectionClass(EventMapper::class);
+        $reflection = new \ReflectionClass(\Infinityloop\ObserverComponent\EventMapper::class);
 
         self::assertTrue($reflection->getMethod('isComponentRegistered')->isPrivate());
     }
 
     public function testGetEventMapVisibility() : void
     {
-        $reflection = new \ReflectionClass(EventMapper::class);
+        $reflection = new \ReflectionClass(\Infinityloop\ObserverComponent\EventMapper::class);
 
         self::assertTrue($reflection->getMethod('getEventMap')->isPrivate());
     }
