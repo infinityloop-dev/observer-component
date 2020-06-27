@@ -6,7 +6,7 @@ namespace Infinityloop\ObserverComponent;
 
 final class EventMapper
 {
-    use Nette\SmartObject;
+    use \Nette\SmartObject;
 
     private \Nette\Application\Application $application;
     private \Nette\Caching\IStorage $storage;
@@ -55,7 +55,6 @@ final class EventMapper
     {
         $presenter = $this->application->getPresenter();
         \assert($presenter instanceof \Nette\Application\UI\Control);
-
         foreach ($this->getObserverList(\get_class($event)) as $observerPath) {
             \assert(\is_string($observerPath));
 
