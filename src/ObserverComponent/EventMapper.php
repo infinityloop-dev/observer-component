@@ -55,7 +55,10 @@ final class EventMapper
     public function dispatchEvent(IEvent $event) : void
     {
         $presenter = $this->application->getPresenter();
-        \assert($presenter instanceof \Nette\Application\UI\Control);
+
+        if ($presenter === null) {
+            return;
+        }
 
         foreach ($this->getObserverList(\get_class($event)) as $observerPath) {
             \assert(\is_string($observerPath));
